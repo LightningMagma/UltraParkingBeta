@@ -13,7 +13,7 @@
         <p><a href="/parqueo/update/<?= esc($parqueo_item['vehplaca'], 'url') ?>">Editar</a></p>
         <form action="/parqueo/delete/" method="post">
         <?= csrf_field() ?>
-            <input type="hidden" name="id" value="<?= esc($parqueo_item['vehplaca']) ?>">
+            <input type="hidden" name="vehplaca" value="<?= esc($parqueo_item['vehplaca']) ?>">
             <input type="submit" value="Eliminar">
         </form>
 

@@ -1,1 +1,1 @@
-<p>News item deleted successfully.</p>
+<p>Parking item deleted successfully.</p>

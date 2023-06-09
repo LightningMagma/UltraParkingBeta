@@ -51,12 +51,13 @@ class Parqueo extends BaseController
                 . view('templates/footer');
         }
 
-        $post = $this->request->getPost(['vehplaca', 'vehtipo']);
+        $post = $this->request->getPost(['vehplaca', 'vehtipo','vehconductor']);
 
         // Checks whether the submitted data passed the validation rules.
         if (! $this->validateData($post, [
             'vehplaca' => 'required|max_length[255]|min_length[3]',
-            'vehtipo'  => 'required|max_length[5000]|min_length[10]',
+            'vehtipo'  => 'required|max_length[5000]|min_length[3]',
+            'vehconductor'  => 'required|max_length[5000]|min_length[3]',
         ])) {
             // The validation fails, so returns the form.
             return view('templates/header', ['title' => 'Create a parking item'])
@@ -66,51 +67,50 @@ class Parqueo extends BaseController
 
         $model = model(ParqueoModelo::class);
 
-        $model->save([
+        $model->insert([
             'vehplaca' => $post['vehplaca'],
-            'vehplaca'  => url_title($post['vehplaca'], '-', true),
-            'vehcarro'  => $post['vehcarro'],
+            'vehtipo'  => $post['vehtipo'],
+            'vehconductor' => $post['vehconductor'],
         ]);
 
         return view('templates/header', ['title' => 'Create a parking item'])
             . view('parqueo/success')
             . view('templates/footer');
     }
-    public function update($id=null){
+    public function update($vehplaca=null){
 
-        $model=model(NewModels::class);
-        $data['news']=$model->getById($id);
+        $model=model(ParqueoModelo::class);
+        $data['parqueo']=$model->getById($vehplaca);
 
         if (! $this->request->is('post')) {
             // The form is not submitted, so returns the form.
             return view('templates/header', $data)
-                . view('news/update')
+                . view('parqueo/update')
                 . view('templates/footer');
         }
 
-        $post = $this->request->getPost(['id','title', 'body']);
+        $post = $this->request->getPost(['vehplaca','vehtipo','vehconductor']);
             $model->save([
-                'id' => $post['id'],
-                'title' => $post['title'],
-                'slug'  => url_title($post['title'], '-', true),
-                'body'  => $post['body'],
+                'vehplaca' => $post['vehplaca'],
+                'vehtipo'  => $post['vehtipo'],
+                'vehconductor' => $post['vehconductor'],
             ]);
     
-            return view('templates/header', ['title' => 'Noticia actualizada'])
-                . view('news/actualizar')
+            return view('templates/header', ['title' => 'Parqueo actualizado'])
+                . view('parqueo/actualizar')
                 . view('templates/footer');
     }
 
-    public function delete($id=null){
-        $model=model(NewModels::class);
-        $data['news']=$model->getById($id);
-        $post = $this->request->getPost(['id']);
+    public function delete($vehplaca=null){
+        $model=model(ParqueoModelo::class);
+        $data['parqueo']=$model->getById($vehplaca);
+        $post = $this->request->getPost(['vehplaca']);
         $model->delete([
-            'id' => $post['id'],
+            'vehplaca' => $post['vehplaca'],
         ]);
 
-        return view('templates/header', ['title' => 'Noticia actualizada'])
-                . view('news/deleted')
+        return view('templates/header', ['title' => 'Parqueo actualizado'])
+                . view('parqueo/deleted')
                 . view('templates/footer');
     }
 }

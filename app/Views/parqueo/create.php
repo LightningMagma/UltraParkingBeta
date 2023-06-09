@@ -11,7 +11,11 @@
     <br>
 
     <label for="vehtipo">Text</label>
-    <textarea name="vehtipo" cols="45" rows="4"><?= set_value('vehtipo') ?></textarea>
+    <input type="input" name="vehtipo" value="<?= set_value('vehtipo') ?>">
+    <br>
+
+    <label for="vehconductor">Text</label>
+    <input type="input" name="vehconductor" value="<?= set_value('vehconductor') ?>">
     <br>
 
     <input type="submit" name="submit" value="Create parking item">

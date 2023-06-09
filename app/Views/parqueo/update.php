@@ -1,13 +1,17 @@
-<form action="/news/update" method="post">
+<form action="/parqueo/update" method="post">
     <?= csrf_field() ?>
 
-    <label for="title">Title</label>
-    <input type="text" name="title" value="<?= esc($news['title']) ?>">
+    <label for="vehplaca">Title</label>
+    <input type="text" name="vehplaca" value="<?= esc($parqueo['vehplaca']) ?>">
     <br>
 
-    <label for="body">Noticia:</label>
-    <input type="text" name="body" value="<?= esc($news['body']) ?>" required><br><br>
+    <label for="vehtipo">Noticia:</label>
+    <input type="text" name="vehtipo" value="<?= esc($parqueo['vehtipo']) ?>" required><br><br>
     <br>
-    <input type="hidden" name="id" value='<?= esc($news['id']) ?>'>
+    
+    <label for="vehconductor">Noticia:</label>
+    <input type="text" name="vehconductor" value="<?= esc($parqueo['vehconductor']) ?>" required><br><br>
+    <br>
+
     <input type="submit" name="submit" value="enviar">
 </form>

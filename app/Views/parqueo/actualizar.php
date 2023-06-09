@@ -1,1 +1,1 @@
-<p>News item updated successfully.</p>
+<p>Parking item updated successfully.</p>

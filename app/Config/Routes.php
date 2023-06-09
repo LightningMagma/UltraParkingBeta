@@ -39,7 +39,7 @@ $routes->get('parqueo/update/(:segment)', [Parqueo::class, 'update']);
 $routes->get('parqueo', [Parqueo::class, 'index']);
 $routes->get('pages', [Pages::class, 'index']);
 $routes->get('(:segment)', [Pages::class, 'view']);
-//$routes->get('(:segment)', [Pages::class, 'login']);
+$routes->get('(:segment)', [Pages::class, 'login']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
